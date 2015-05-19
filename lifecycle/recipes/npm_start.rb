@@ -15,11 +15,8 @@ node['deploy'].each do |application, deploy|
     next
   end
 
-  pm2_application 'server' do
-    dir = "#{deploy['deploy_to']}/current/"
-    cwd dir
-    script 'server.js'
-
-    action [:deploy, :start_or_restart]
+  execute "npm start" do
+    cwd "#{deploy['deploy_to']}/current/"
+    command "npm start"
   end
 end
