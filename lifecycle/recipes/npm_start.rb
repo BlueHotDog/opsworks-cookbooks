@@ -15,8 +15,6 @@ node['deploy'].each do |application, deploy|
     next
   end
 
-  execute "npm start" do
-    cwd "#{deploy['deploy_to']}/current/"
-    command "npm start"
-  end
+  command = "cd #{deploy['deploy_to']}/current/ && npm start"
+  Chef::Log.info(OpsWorks::ShellOut.shellout("sudo su - #{node[:deploy][application][:user]} -c '#{command}' 2>&1"))
 end

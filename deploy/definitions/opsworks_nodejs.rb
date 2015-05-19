@@ -11,6 +11,7 @@ define :opsworks_nodejs do
       command = "/usr/local/bin/npm install #{npm}@#{version}"
     else
       command = "/usr/local/bin/npm install #{npm}"
+    end
 
     execute command do
       cwd "#{deploy[:deploy_to]}/current"
