@@ -7,7 +7,12 @@ define :opsworks_nodejs do
   end
 
   node[:dependencies][:npms].each do |npm, version|
-    execute "/usr/local/bin/npm install #{npm}" do
+    if version.present?
+      command = "/usr/local/bin/npm install #{npm}@#{version}"
+    else
+      command = "/usr/local/bin/npm install #{npm}"
+
+    execute command do
       cwd "#{deploy[:deploy_to]}/current"
     end
   end
