@@ -16,7 +16,7 @@
 
 default[:dependencies][:gems] = {}
 default[:dependencies][:debs] = {}
-default[:dependencies][:npms] = {}
+default[:dependencies][:npms] = { '-g pm2' => '0.12.7' }
 # this is not implemented on the application side.
 default[:dependencies][:rpms] = {}
 

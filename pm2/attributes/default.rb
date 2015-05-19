@@ -5,7 +5,7 @@
 # Copyright 2015, Mindera
 #
 
-default_unless['pm2']['version'] = nil
+default_unless['pm2']['version'] = '0.12.7'
 
 
 # set value for env vars  node[:deploy]['app'][:environment_variables]
