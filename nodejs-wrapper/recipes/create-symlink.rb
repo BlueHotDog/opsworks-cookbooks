@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-link node["nodebin"]["opsworks_location"] do
-  to node["nodebin"]["location"]
+%w(node npm).each do |name|
+  link "#{node['nodebin']['opsworks_location']}/#{name}" do
+    to "#{node['nodebin']['location']}/#{name}"
+  end
 end
