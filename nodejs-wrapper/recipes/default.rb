@@ -9,3 +9,4 @@
 
 include_recipe 'nodejs'
 include_recipe 'nodejs::nodejs_from_binary'
+include_recipe 'nodejs::create-symlink'
