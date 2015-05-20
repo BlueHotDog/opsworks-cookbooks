@@ -10,5 +10,5 @@
 include_recipe 'nodejs'
 include_recipe 'nodejs::nodejs_from_binary'
 include_recipe 'nodejs-wrapper::create-symlink'
-include_recipe 'nginx'
+include_recipe 'nginx::source'
 include_recipe 'nginx::passenger'
