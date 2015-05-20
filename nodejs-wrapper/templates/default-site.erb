@@ -1,0 +1,19 @@
+server {
+  listen 80;
+  #server_name <%= node[:hostname] %>;
+
+  access_log  <%= node['nginx']['log_dir'] %>/localhost.access.log;
+  error_log <%= node['nginx']['log_dir'] %>/localhost.error.log
+
+  passenger_app_root <%=@appliction[:deploy_to]%>/current;
+  passenger_enabled on;
+
+  passenger_app_type node;
+  passenger_startup_file server.js;
+  # The static assets are in `static_files` instead, so tell Nginx about it.
+  root <%=@appliction[:deploy_to]%>/current/public/;
+
+  # There is no `tmp` dir. No problem, we can tell Passenger
+  # to look for restart.txt in /webapps/foo instead.
+  passenger_restart_dir <%=@appliction[:deploy_to]%>/current;
+}

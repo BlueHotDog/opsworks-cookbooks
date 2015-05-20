@@ -67,5 +67,7 @@ default[:nginx][:proxy_send_timeout] = 60
 
 default['nginx']['passenger']['install_method'] = 'source'
 default[:nginx][:source][:modules] = ['nginx::passenger']
+default['nginx']['default_site_enabled']   = false
+default['nginx']['user'] = 'deploy'
 default['nginx']['passenger']['nodejs'] = "#{default['nodebin']['opsworks_location']}/node"
 default['nginx']['passenger']['install_rake'] = false
