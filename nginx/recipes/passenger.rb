@@ -29,6 +29,7 @@ unless packages.empty?
   end
 end
 
+gem_package 'passenger'
 gem_package 'rake' if node['nginx']['passenger']['install_rake']
 
 if node['nginx']['passenger']['install_method'] == 'package'

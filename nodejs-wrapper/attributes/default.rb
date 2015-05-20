@@ -65,7 +65,7 @@ default[:nginx][:proxy_send_timeout] = 60
 # default['nginx']['package_name'] = 'nginx-extras'
 # default['nginx']['passenger']['install_method'] = 'package'
 
-default['nginx']['passenger']['install_method'] = 'package'
+default['nginx']['passenger']['install_method'] = 'source'
 default[:nginx][:source][:modules] = %w(
   nginx::http_ssl_module
   nginx::http_gzip_static_module
@@ -73,7 +73,7 @@ default[:nginx][:source][:modules] = %w(
 )
 default['nginx']['default_site_enabled']   = false
 default['nginx']['user'] = 'deploy'
+default['nginx']['passenger']['version'] = '5.0.8'
 default['nginx']['passenger']['nodejs'] = "#{default['nodebin']['opsworks_location']}/node"
 default['nginx']['passenger']['install_rake'] = false
 default['nginx']['source']['use_existing_user'] = true
-#default['nginx']['user'] = 'deploy'
