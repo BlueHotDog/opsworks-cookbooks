@@ -7,3 +7,4 @@ default['nodebin']['location'] = '/usr/local/nodejs-binary/bin'
 default['nodebin']['opsworks_location'] = '/usr/local/bin'
 
 default['nginx']['passenger']['nodejs'] = "#{default['nodebin']['opsworks_location']}/node"
+default['nginx']['passenger']['install_rake'] = false
