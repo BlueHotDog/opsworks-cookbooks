@@ -1,6 +1,12 @@
 source 'https://supermarket.getchef.com'
 
-cookbook 'nodejs', '~> 2.4.0'
+cookbook 'nodejs',          '~> 2.4.0'
+cookbook 'apt',             '~> 2.2'
+cookbook 'bluepill',        '~> 2.3'
+cookbook 'build-essential', '~> 2.0'
+cookbook 'ohai',            '~> 2.0'
+cookbook 'runit',           '~> 1.2'
+cookbook 'yum-epel',        '~> 0.3'
 # cookbook 'nginx', '~> 2.7.6'
 #cookbook 'apt', '~> 2.7.0'
 #
