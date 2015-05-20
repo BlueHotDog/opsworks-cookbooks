@@ -3,7 +3,7 @@ server {
   #server_name <%= node[:hostname] %>;
 
   access_log  <%= node['nginx']['log_dir'] %>/localhost.access.log;
-  error_log <%= node['nginx']['log_dir'] %>/localhost.error.log
+  #error_log <%= node['nginx']['log_dir'] %>/localhost.error.log
 
   passenger_app_root <%=@deploy_to%>/current;
   passenger_enabled on;
