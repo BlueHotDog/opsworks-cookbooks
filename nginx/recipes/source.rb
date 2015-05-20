@@ -35,7 +35,7 @@ unless node['nginx']['source']['use_existing_user']
   user node['nginx']['user'] do
     system true
     shell  '/bin/false'
-    home   '/var/www'
+    home   '/root'
   end
 end
 

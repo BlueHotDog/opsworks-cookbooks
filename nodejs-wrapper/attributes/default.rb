@@ -72,3 +72,4 @@ default['nginx']['user'] = 'deploy'
 default['nginx']['passenger']['nodejs'] = "#{default['nodebin']['opsworks_location']}/node"
 default['nginx']['passenger']['install_rake'] = false
 default['nginx']['source']['use_existing_user'] = true
+default['nginx']['user'] = 'deploy'
