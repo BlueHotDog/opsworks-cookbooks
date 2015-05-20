@@ -14,7 +14,7 @@ include_recipe 'nginx::source'
 include_recipe 'nginx::passenger'
 
 node[:deploy].each do |application, deploy|
-  nginx_site "#{app.name}.conf" do
+  nginx_site "#{deploy[:application]}.conf" do
     enable true
     template 'nginx_site.erb'
     variables 'application' => application
