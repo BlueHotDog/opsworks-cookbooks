@@ -60,8 +60,10 @@ default[:nginx][:server_names_hash_bucket_size] = 64
 
 default[:nginx][:proxy_read_timeout] = 60
 default[:nginx][:proxy_send_timeout] = 60
-
-default['nginx']['repo_source'] = 'passenger'
+#
+# default['nginx']['repo_source'] = 'passenger'
+# default['nginx']['package_name'] = 'nginx-extras'
+# default['nginx']['passenger']['install_method'] = 'package'
 
 default['nginx']['passenger']['nodejs'] = "#{default['nodebin']['opsworks_location']}/node"
 default['nginx']['passenger']['install_rake'] = false
