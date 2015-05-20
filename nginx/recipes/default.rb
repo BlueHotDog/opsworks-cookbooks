@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-package "nginx"
+# package "nginx"
 
 directory node[:nginx][:dir] do
   owner 'root'
