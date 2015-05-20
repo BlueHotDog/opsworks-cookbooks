@@ -14,31 +14,31 @@ define :opsworks_deploy do
     ensure_scm_package_installed(deploy[:scm][:scm_type])
 
     prepare_git_checkouts(
-      :user => deploy[:user],
-      :group => deploy[:group],
-      :home => deploy[:home],
-      :ssh_key => deploy[:scm][:ssh_key]
+        :user => deploy[:user],
+        :group => deploy[:group],
+        :home => deploy[:home],
+        :ssh_key => deploy[:scm][:ssh_key]
     ) if deploy[:scm][:scm_type].to_s == 'git'
 
     prepare_svn_checkouts(
-      :user => deploy[:user],
-      :group => deploy[:group],
-      :home => deploy[:home],
-      :deploy => deploy,
-      :application => application
+        :user => deploy[:user],
+        :group => deploy[:group],
+        :home => deploy[:home],
+        :deploy => deploy,
+        :application => application
     ) if deploy[:scm][:scm_type].to_s == 'svn'
 
     if deploy[:scm][:scm_type].to_s == 'archive'
       repository = prepare_archive_checkouts(deploy[:scm])
       node.set[:deploy][application][:scm] = {
-        :scm_type => 'git',
-        :repository => repository
+          :scm_type => 'git',
+          :repository => repository
       }
     elsif deploy[:scm][:scm_type].to_s == 's3'
       repository = prepare_s3_checkouts(deploy[:scm])
       node.set[:deploy][application][:scm] = {
-        :scm_type => 'git',
-        :repository => repository
+          :scm_type => 'git',
+          :repository => repository
       }
     end
   end
@@ -83,18 +83,18 @@ define :opsworks_deploy do
       end
 
       case deploy[:scm][:scm_type].to_s
-      when 'git'
-        scm_provider :git
-        enable_submodules deploy[:enable_submodules]
-        shallow_clone deploy[:shallow_clone]
-      when 'svn'
-        scm_provider :subversion
-        svn_username deploy[:scm][:user]
-        svn_password deploy[:scm][:password]
-        svn_arguments "--no-auth-cache --non-interactive --trust-server-cert"
-        svn_info_args "--no-auth-cache --non-interactive --trust-server-cert"
-      else
-        raise "unsupported SCM type #{deploy[:scm][:scm_type].inspect}"
+        when 'git'
+          scm_provider :git
+          enable_submodules deploy[:enable_submodules]
+          shallow_clone deploy[:shallow_clone]
+        when 'svn'
+          scm_provider :subversion
+          svn_username deploy[:scm][:user]
+          svn_password deploy[:scm][:password]
+          svn_arguments "--no-auth-cache --non-interactive --trust-server-cert"
+          svn_info_args "--no-auth-cache --non-interactive --trust-server-cert"
+        else
+          raise "unsupported SCM type #{deploy[:scm][:scm_type].inspect}"
       end
 
       before_migrate do
@@ -106,11 +106,11 @@ define :opsworks_deploy do
           end
 
           node.default[:deploy][application][:database][:adapter] = OpsWorks::RailsConfiguration.determine_database_adapter(
-            application,
-            node[:deploy][application],
-            release_path,
-            :force => node[:force_database_adapter_detection],
-            :consult_gemfile => node[:deploy][application][:auto_bundle_on_deploy]
+              application,
+              node[:deploy][application],
+              release_path,
+              :force => node[:force_database_adapter_detection],
+              :consult_gemfile => node[:deploy][application][:auto_bundle_on_deploy]
           )
           template "#{node[:deploy][application][:deploy_to]}/shared/config/database.yml" do
             cookbook "rails"
@@ -119,8 +119,8 @@ define :opsworks_deploy do
             owner node[:deploy][application][:user]
             group node[:deploy][application][:group]
             variables(
-              :database => node[:deploy][application][:database],
-              :environment => node[:deploy][application][:rails_env]
+                :database => node[:deploy][application][:database],
+                :environment => node[:deploy][application][:rails_env]
             )
 
             only_if do
@@ -137,10 +137,10 @@ define :opsworks_deploy do
             owner node[:deploy][application][:user]
             group node[:deploy][application][:group]
             variables(
-              :database => node[:deploy][application][:database],
-              :memcached => node[:deploy][application][:memcached],
-              :layers => node[:opsworks][:layers],
-              :stack_name => node[:opsworks][:stack][:name]
+                :database => node[:deploy][application][:database],
+                :memcached => node[:deploy][application][:memcached],
+                :layers => node[:opsworks][:layers],
+                :stack_name => node[:opsworks][:stack][:name]
             )
             only_if do
               File.exists?("#{node[:deploy][application][:deploy_to]}/shared/config")
@@ -167,20 +167,20 @@ define :opsworks_deploy do
   if deploy[:application_type] == 'rails' && node[:opsworks][:instance][:layers].include?('rails-app')
     case node[:opsworks][:rails_stack][:name]
 
-    when 'apache_passenger'
-      passenger_web_app do
-        application application
-        deploy deploy
-      end
+      when 'apache_passenger'
+        passenger_web_app do
+          application application
+          deploy deploy
+        end
 
-    when 'nginx_unicorn'
-      unicorn_web_app do
-        application application
-        deploy deploy
-      end
+      when 'nginx_unicorn'
+        unicorn_web_app do
+          application application
+          deploy deploy
+        end
 
-    else
-      raise "Unsupport Rails stack"
+      else
+        raise "Unsupport Rails stack"
     end
   end
 
@@ -191,6 +191,6 @@ define :opsworks_deploy do
     owner "root"
     group "root"
     mode 0644
-    variables( :log_dirs => ["#{deploy[:deploy_to]}/shared/log" ] )
+    variables(:log_dirs => ["#{deploy[:deploy_to]}/shared/log"])
   end
 end
