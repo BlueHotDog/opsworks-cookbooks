@@ -1,7 +1,7 @@
 source 'https://supermarket.getchef.com'
 
 cookbook 'nodejs', '~> 2.4.0'
-cookbook 'nginx', '~> 2.7.6'
+# cookbook 'nginx', '~> 2.7.6'
 #cookbook 'apt', '~> 2.7.0'
 #
 #cookbook 'pm2', '~> 0.4.0'
