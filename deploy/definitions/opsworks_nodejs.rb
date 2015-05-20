@@ -28,9 +28,9 @@ define :opsworks_nodejs do
     group 'root'
     mode '0644'
     variables(
-      :deploy => deploy,
-      :application_name => application,
-      :monitored_script => "#{deploy[:deploy_to]}/current/server.js"
+        :deploy => deploy,
+        :application_name => application,
+        :monitored_script => "#{deploy[:deploy_to]}/current/server.js"
     )
     notifies :restart, "service[monit]", :immediately
   end

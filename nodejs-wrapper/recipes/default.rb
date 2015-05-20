@@ -17,6 +17,6 @@ node[:deploy].each do |application, deploy|
   nginx_site "#{deploy[:application]}.conf" do
     enable true
     template 'nginx_site.erb'
-    variables 'application' => application
+    variables :deploy_to => deploy[:deploy_to]
   end
 end
