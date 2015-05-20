@@ -44,7 +44,7 @@ elsif node['nginx']['passenger']['install_method'] == 'source'
 
   node.run_state['nginx_configure_flags'] =
     node.run_state['nginx_configure_flags'] | ["--add-module=#{node['nginx']['passenger']['root']}/ext/nginx"]
-
+  puts node.run_state['nginx_configure_flags']
 end
 
 template "#{node['nginx']['dir']}/conf.d/passenger.conf" do
